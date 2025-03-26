@@ -41,6 +41,7 @@ const ApiTracker = () => {
   const [callCount, setCallCount] = useState(0)
   const [nextCallIn, setNextCallIn] = useState(14 * 60)
   const [isActive, setIsActive] = useState(false)
+  const [lastCallStatus, setLastCallStatus] = useState<'success' | 'error' | null>(null)
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60)
@@ -48,31 +49,39 @@ const ApiTracker = () => {
     return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
   }
 
-  useEffect(() => {
-    const makeApiCall = async () => {
-      try {
-        setIsActive(true)
-        const response = await fetch('https://cric-island-backend.onrender.com/cric-island/start', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        
-        if (response.ok) {
-          setCallCount(prev => prev + 1)
+  const makeApiCall = async () => {
+    try {
+      setIsActive(true)
+      const response = await fetch('https://cric-island-backend.onrender.com/cric-island/start', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
         }
-      } catch (error) {
-        console.warn('API call failed:', error)
-      } finally {
-        setIsActive(false)
+      })
+      
+      if (response.ok) {
+        setCallCount(prev => prev + 1)
+        setLastCallStatus('success')
+        console.log('API call successful')
+      } else {
+        setLastCallStatus('error')
+        console.warn('API call failed with status:', response.status)
       }
+    } catch (error) {
+      setLastCallStatus('error')
+      console.warn('API call failed:', error)
+    } finally {
+      setIsActive(false)
     }
+  }
 
-    // Initial call
+  // Initial API call
+  useEffect(() => {
     makeApiCall()
+  }, [])
 
-    // Set up the countdown timer
+  // Countdown timer and periodic calls
+  useEffect(() => {
     const countdownInterval = setInterval(() => {
       setNextCallIn(prev => {
         if (prev <= 1) {
@@ -91,6 +100,7 @@ const ApiTracker = () => {
       <div>
         <StatusDot isActive={isActive} />
         API Calls: {callCount}
+        {lastCallStatus === 'error' && ' (Last call failed)'}
       </div>
       <CountdownText>
         Next call in: {formatTime(nextCallIn)}
