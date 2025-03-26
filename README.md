@@ -1,76 +1,38 @@
-# Nitish Jha - CV
+# Portfolio
 
-A modern, responsive CV website built with React, TypeScript, and styled-components.
+My personal portfolio website built with React and TypeScript.
+
+![API Call Status](https://github.com/Nj221102/Portfolio/actions/workflows/api_call.yml/badge.svg)
 
 ## Features
 
-- Modern and clean design
-- Responsive layout
+- Modern, responsive design
+- Dark theme with glassmorphic UI elements
+- Automatic API calls every 10 minutes
+- Real-time API call tracking
 - Smooth animations and transitions
-- Dark theme optimized
-- SEO friendly
-- Easy to maintain and update
-
-## Tech Stack
-
-- React
-- TypeScript
-- styled-components
-- Vite
-- Font Awesome
-- Google Fonts
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/Nj221102/cv-main.git
-cd cv-main/cv-react
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-## Deployment
-
-This project is configured for deployment to GitHub Pages. To deploy:
-
-1. Make sure you have the gh-pages package installed:
-```bash
-npm install --save-dev gh-pages
-```
-
-2. Deploy to GitHub Pages:
-```bash
-npm run deploy
-```
-
-The site will be available at: https://nj221102.github.io/cv-main
 
 ## Development
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run deploy` - Deploy to GitHub Pages
+```bash
+# Install dependencies
+npm install
 
-## License
+# Start development server
+npm run dev
 
-This project is licensed under the MIT License.
+# Build for production
+npm run build
+```
+
+## Deployment
+
+The site is automatically deployed to GitHub Pages when changes are pushed to the main branch.
+You can view it at: https://nj221102.github.io/Portfolio/
+
+## API Integration
+
+The site includes automatic API calls to keep the server active:
+- Calls are made every 10 minutes via GitHub Actions
+- A visual tracker shows the status of API calls in real-time
+- The workflow status can be monitored via the badge above
