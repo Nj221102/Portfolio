@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <defs>
+    <clipPath id="circle">
+      <circle cx="90" cy="90" r="85" />
+    </clipPath>
+  </defs>
+  <circle cx="90" cy="90" r="85" fill="#64ffda" />
+  <image href="/pic.png" width="180" height="180" clip-path="url(#circle)" />
+</svg> 

@@ -27,7 +27,7 @@ const ProfilePhoto = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-image: url('/Portfolio/pic.png');
+  background-image: url('/pic.png');
   background-size: cover;
   background-position: center;
   border: 2px solid rgba(100, 255, 218, 0.3);
