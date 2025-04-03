@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { useTheme } from '../context/ThemeContext'
+import { darkTheme, lightTheme } from '../styles/theme'
 
 const EducationContainer = styled.div`
   display: flex;
@@ -6,55 +8,71 @@ const EducationContainer = styled.div`
   gap: 20px;
 `
 
-const EducationItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+const EducationItem = styled.div<{ theme: any }>`
+  margin-bottom: 30px;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 `
 
-const School = styled.h3`
-  color: #64ffda;
-  font-size: 1.1rem;
-  margin: 0;
+const SchoolName = styled.h3<{ theme: any }>`
+  color: ${props => props.theme.primary};
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  font-weight: 600;
 `
 
-const Degree = styled.h4`
-  color: #e0e0e0;
+const Degree = styled.div<{ theme: any }>`
+  color: ${props => props.theme.text};
   font-size: 1rem;
-  margin: 0;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span.grade {
+    color: ${props => props.theme.primary};
+    font-weight: 500;
+  }
 `
 
-const Location = styled.span`
-  color: #8892b0;
+const Location = styled.div<{ theme: any }>`
+  color: ${props => props.theme.secondaryText};
   font-size: 0.9rem;
-`
-
-const Date = styled.span`
-  color: #8892b0;
-  font-size: 0.9rem;
-`
-
-const GPA = styled.span`
-  color: #8892b0;
-  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 const Education = () => {
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
   return (
     <EducationContainer>
-      <EducationItem>
-        <School>StarexUniversity</School>
-        <Degree>BTech in Computer Science</Degree>
-        <GPA>SGPA: 8.59</GPA>
-        <Location>Gurugram, Haryana</Location>
-        <Date>Aug 2023 - Present</Date>
+      <EducationItem theme={theme}>
+        <SchoolName theme={theme}>StarexUniversity</SchoolName>
+        <Degree theme={theme}>
+          <span>BTech in Computer Science</span>
+          <span className="grade">SGPA: 8.59</span>
+        </Degree>
+        <Location theme={theme}>
+          <span>Gurugram, Haryana</span>
+          <span>Aug 2023 - Present</span>
+        </Location>
       </EducationItem>
-      <EducationItem>
-        <School>M.B.S International School, Greater Noida</School>
-        <Degree>Senior Secondary School (STEM)</Degree>
-        <GPA>CGPA: 8.0</GPA>
-        <Location>Noida, UP</Location>
-        <Date>Mar 2023</Date>
+
+      <EducationItem theme={theme}>
+        <SchoolName theme={theme}>M.B.S International School</SchoolName>
+        <Degree theme={theme}>
+          <span>Senior Secondary School (STEM)</span>
+          <span className="grade">CGPA: 8.0</span>
+        </Degree>
+        <Location theme={theme}>
+          <span>Greater Noida, UP</span>
+          <span>Mar 2023</span>
+        </Location>
       </EducationItem>
     </EducationContainer>
   )

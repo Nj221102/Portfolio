@@ -1,116 +1,121 @@
 import styled from 'styled-components'
-import { fadeIn, glowPulse } from '../styles/animations'
+import { useTheme } from '../context/ThemeContext'
+import { darkTheme, lightTheme } from '../styles/theme'
 
-const SkillsContainer = styled.div`
+const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  animation: ${fadeIn} 0.5s ease-in-out;
-`
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
 
-const SkillCategory = styled.div`
-  background: rgba(30, 30, 30, 0.6);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(100, 255, 218, 0.1);
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
-    border-color: rgba(100, 255, 218, 0.3);
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `
 
-const CategoryTitle = styled.h3`
-  color: rgba(100, 255, 218, 0.9);
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  position: relative;
-  display: inline-block;
+const SkillCategory = styled.div<{ theme: any }>`
+  background: ${props => props.theme.cardBg};
+  border-radius: 12px;
+  padding: 20px;
+  border: ${props => props.theme.sectionBorder};
 
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(100, 255, 218, 0.8), transparent);
+  h3 {
+    color: ${props => props.theme.primary};
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid ${props => props.theme.cardBorder};
   }
 `
 
-const SkillList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`
+const SkillItem = styled.div<{ theme: any }>`
+  margin-bottom: 15px;
 
-const SkillItem = styled.li`
-  margin: 0.5rem 0;
-  display: flex;
-  align-items: center;
-  color: #e0e0e0;
-  transition: color 0.3s ease;
-
-  &:before {
-    content: '▹';
-    color: rgba(100, 255, 218, 0.8);
-    margin-right: 0.5rem;
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
   }
 
-  &:hover {
-    color: rgba(100, 255, 218, 0.9);
+  .skill-name {
+    color: ${props => props.theme.text};
+    font-size: 0.9rem;
+  }
+
+  .skill-bar {
+    height: 6px;
+    background: ${props => props.theme.buttonBg};
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .skill-progress {
+    height: 100%;
+    background: ${props => props.theme.primary};
+    border-radius: 3px;
+    transition: width 1s ease;
   }
 `
 
 const Skills = () => {
-  const skills = {
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
+  const skillCategories = {
     'Programming Languages': [
-      'JavaScript/TypeScript',
-      'Python',
-      'Java',
-      'C++',
-      'SQL'
+      { name: 'R', level: 90 },
+      { name: 'Java', level: 85 },
+      { name: 'JavaScript', level: 90 },
+      { name: 'Python', level: 85 },
+      { name: 'C', level: 80 },
+      { name: 'Ruby', level: 75 },
+      { name: 'Go', level: 80 }
     ],
-    'Web Technologies': [
-      'React.js',
-      'Node.js',
-      'HTML5/CSS3',
-      'Express.js',
-      'RESTful APIs'
+    'Frameworks & Libraries': [
+      { name: 'Node.js', level: 90 },
+      { name: 'React.js', level: 90 },
+      { name: 'Next.js', level: 85 },
+      { name: 'Express.js', level: 85 },
+      { name: 'Ruby on Rails', level: 75 },
+      { name: 'Nostr', level: 85 }
     ],
     'Tools & Platforms': [
-      'Git',
-      'Docker',
-      'AWS',
-      'Linux',
-      'VS Code'
+      { name: 'Git', level: 90 },
+      { name: 'GitHub/GitLab', level: 90 },
+      { name: 'Docker', level: 85 },
+      { name: 'Postman', level: 85 }
     ],
-    'Other Skills': [
-      'Agile Development',
-      'CI/CD',
-      'System Design',
-      'Problem Solving',
-      'Team Leadership'
+    'Databases & Others': [
+      { name: 'MongoDB', level: 85 },
+      { name: 'MySQL', level: 85 },
+      { name: 'PostgreSQL', level: 80 },
+      { name: 'Time Management', level: 90 },
+      { name: 'Problem Solving', level: 90 },
+      { name: 'Leadership', level: 85 }
     ]
-  }
+  };
 
   return (
-    <SkillsContainer>
-      {Object.entries(skills).map(([category, items]) => (
-        <SkillCategory key={category}>
-          <CategoryTitle>{category}</CategoryTitle>
-          <SkillList>
-            {items.map((skill) => (
-              <SkillItem key={skill}>{skill}</SkillItem>
-            ))}
-          </SkillList>
+    <SkillsGrid>
+      {Object.entries(skillCategories).map(([category, skills]) => (
+        <SkillCategory key={category} theme={theme}>
+          <h3>{category}</h3>
+          {skills.map(skill => (
+            <SkillItem key={skill.name} theme={theme}>
+              <div className="skill-header">
+                <span className="skill-name">{skill.name}</span>
+              </div>
+              <div className="skill-bar">
+                <div 
+                  className="skill-progress" 
+                  style={{ width: `${skill.level}%` }}
+                />
+              </div>
+            </SkillItem>
+          ))}
         </SkillCategory>
       ))}
-    </SkillsContainer>
-  )
-}
+    </SkillsGrid>
+  );
+};
 
-export default Skills 
+export default Skills; 

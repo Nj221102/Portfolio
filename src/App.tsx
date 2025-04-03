@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Header from './components/Header'
 import Photo from './components/Photo'
 import About from './components/About'
+import FocusAreas from './components/FocusAreas'
 import ResumeLinks from './components/ResumeLinks'
 import Education from './components/Education'
 import Experience from './components/Experience'
@@ -11,24 +12,57 @@ import Skills from './components/Skills'
 import Achievements from './components/Achievements'
 import Certificates from './components/Certificates'
 import BackgroundPattern from './components/BackgroundPattern'
+import ThemeSwitcher from './components/ThemeSwitcher'
+import { useTheme } from './context/ThemeContext'
 import { fadeIn, gradientMove, scaleIn } from './styles/animations'
 
-const AppContainer = styled.div`
+const lightTheme = {
+  bg: 'linear-gradient(-45deg, #f0f9ff, #e0f2fe, #dbeafe, #e0f2fe)',
+  text: '#1e293b',
+  primary: '#0284c7',
+  accent: '#0ea5e9',
+  card: 'rgba(255, 255, 255, 0.95)',
+  cardBorder: 'rgba(2, 132, 199, 0.1)',
+  secondaryText: '#475569',
+  highlight: '#0284c7',
+  cardBg: 'rgba(255, 255, 255, 0.95)',
+  cardHoverBg: 'rgba(255, 255, 255, 1)',
+  cardShadow: '0 10px 30px -10px rgba(2, 132, 199, 0.15)',
+  buttonBg: 'rgba(2, 132, 199, 0.1)',
+  buttonHoverBg: 'rgba(2, 132, 199, 0.2)',
+  bulletColor: '#0284c7',
+  sectionBorder: '1px solid rgba(2, 132, 199, 0.1)'
+};
+
+const darkTheme = {
+  bg: 'linear-gradient(-45deg, #0a0a0a, #1a1a1a, #0a192f, #1a1a1a)',
+  text: '#e0e0e0',
+  primary: '#64ffda',
+  accent: '#64ffda',
+  card: 'rgba(17, 17, 17, 0.9)',
+  cardBorder: 'rgba(100, 255, 218, 0.1)',
+  secondaryText: '#8892b0',
+  highlight: '#64ffda',
+  cardBg: 'rgba(17, 17, 17, 0.9)',
+  cardHoverBg: 'rgba(17, 17, 17, 0.95)',
+  cardShadow: '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+  buttonBg: 'rgba(100, 255, 218, 0.1)',
+  buttonHoverBg: 'rgba(100, 255, 218, 0.2)',
+  bulletColor: '#64ffda',
+  sectionBorder: '1px solid rgba(100, 255, 218, 0.1)'
+};
+
+const AppContainer = styled.div<{ theme: typeof lightTheme }>`
   font-family: 'Roboto', sans-serif;
-  background: linear-gradient(
-    -45deg,
-    #0a0a0a,
-    #1a1a1a,
-    #0a192f,
-    #1a1a1a
-  );
+  background: ${props => props.theme.bg};
   background-size: 400% 400%;
   animation: ${gradientMove} 15s ease infinite;
-  color: #e0e0e0;
+  color: ${props => props.theme.text};
   min-height: 100vh;
   padding: 20px;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 
   &::before {
     content: '';
@@ -38,13 +72,13 @@ const AppContainer = styled.div`
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 20% 30%, rgba(100, 255, 218, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(100, 255, 218, 0.03) 0%, transparent 50%);
+      radial-gradient(circle at 20% 30%, ${props => props.theme.cardBorder} 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, ${props => props.theme.cardBorder} 0%, transparent 50%);
     pointer-events: none;
   }
 `
 
-const Container = styled.div<{ isVisible: boolean }>`
+const Container = styled.div<{ isVisible: boolean; theme: typeof lightTheme }>`
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -62,25 +96,22 @@ const Container = styled.div<{ isVisible: boolean }>`
   }
 `
 
-const Sidebar = styled.aside`
+const Sidebar = styled.aside<{ theme: typeof lightTheme }>`
   position: sticky;
   top: 20px;
   height: fit-content;
-  background: rgba(17, 17, 17, 0.8);
+  background: ${props => props.theme.cardBg};
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 25px;
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    inset 0 0 0 1px rgba(100, 255, 218, 0.1);
+  box-shadow: ${props => props.theme.cardShadow};
   animation: ${fadeIn} 0.6s ease;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 
-      0 6px 25px rgba(0, 0, 0, 0.4),
-      inset 0 0 0 1px rgba(100, 255, 218, 0.2);
+    box-shadow: ${props => props.theme.cardShadow};
+    background: ${props => props.theme.cardHoverBg};
   }
 
   @media (max-width: 768px) {
@@ -96,104 +127,102 @@ const MainContent = styled.main`
   animation: ${fadeIn} 0.6s ease 0.3s backwards;
 `
 
-const Section = styled.section`
-  background: rgba(17, 17, 17, 0.8);
+const Section = styled.section<{ theme: typeof lightTheme }>`
+  background: ${props => props.theme.cardBg};
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 30px;
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    inset 0 0 0 1px rgba(100, 255, 218, 0.1);
+  box-shadow: ${props => props.theme.cardShadow};
+  border: ${props => props.theme.sectionBorder};
   transition: all 0.3s ease;
   animation: ${scaleIn} 0.5s ease;
 
   &:hover {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: 
-      0 6px 25px rgba(0, 0, 0, 0.4),
-      inset 0 0 0 1px rgba(100, 255, 218, 0.2);
+    transform: translateY(-5px);
+    box-shadow: ${props => props.theme.cardShadow};
+    background: ${props => props.theme.cardHoverBg};
   }
 `
 
-const Title = styled.h2`
+const Title = styled.h2<{ theme: typeof lightTheme }>`
   font-size: 1.5rem;
-  color: #64ffda;
+  color: ${props => props.theme.primary};
   margin-bottom: 25px;
   position: relative;
   padding-bottom: 10px;
   display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 
   &::before {
     content: '{ ';
-    color: rgba(100, 255, 218, 0.5);
+    color: ${props => props.theme.accent};
     margin-right: 5px;
+    opacity: 0.8;
   }
 
   &::after {
     content: ' }';
-    color: rgba(100, 255, 218, 0.5);
+    color: ${props => props.theme.accent};
     margin-left: 5px;
-  }
-
-  &::before,
-  &::after {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  ${Section}:hover &::before,
-  ${Section}:hover &::after {
-    opacity: 1;
+    opacity: 0.8;
   }
 `
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode ? darkTheme : lightTheme;
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   return (
-    <AppContainer>
+    <AppContainer theme={theme}>
       <BackgroundPattern />
-      <Container isVisible={isVisible}>
-        <Sidebar>
+      <Container isVisible={isVisible} theme={theme}>
+        <Sidebar theme={theme}>
           <Photo />
           <Header />
           <ResumeLinks />
         </Sidebar>
         <MainContent>
-          <Section>
-            <Title>About</Title>
+          <Section theme={theme}>
+            <Title theme={theme}>Focus Areas</Title>
+            <FocusAreas />
+          </Section>
+          <Section theme={theme}>
+            <Title theme={theme}>About</Title>
             <About />
           </Section>
-          <Section>
-            <Title>Education</Title>
+          <Section theme={theme}>
+            <Title theme={theme}>Education</Title>
             <Education />
           </Section>
-          <Section>
-            <Title>Experience</Title>
+          <Section theme={theme}>
+            <Title theme={theme}>Experience</Title>
             <Experience />
           </Section>
-          <Section>
-            <Title>Projects</Title>
+          <Section theme={theme}>
+            <Title theme={theme}>Projects</Title>
             <Projects />
           </Section>
-          <Section>
-            <Title>Skills</Title>
+          <Section theme={theme}>
+            <Title theme={theme}>Skills</Title>
             <Skills />
           </Section>
-          <Section>
-            <Title>Achievements</Title>
+          <Section theme={theme}>
+            <Title theme={theme}>Achievements</Title>
             <Achievements />
           </Section>
-          <Section>
-            <Title>Certificates</Title>
+          <Section theme={theme}>
+            <Title theme={theme}>Certificates</Title>
             <Certificates />
           </Section>
         </MainContent>
       </Container>
+      <ThemeSwitcher />
     </AppContainer>
   )
 }
