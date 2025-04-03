@@ -11,9 +11,7 @@ import Skills from './components/Skills'
 import Achievements from './components/Achievements'
 import Certificates from './components/Certificates'
 import BackgroundPattern from './components/BackgroundPattern'
-import ApiTracker from './components/ApiTracker'
 import { fadeIn, gradientMove, scaleIn } from './styles/animations'
-import { pingServer, PING_INTERVAL } from './utils/api'
 
 const AppContainer = styled.div`
   font-family: 'Roboto', sans-serif;
@@ -156,18 +154,6 @@ function App() {
     setIsVisible(true);
   }, []);
 
-  // Effect for periodic API calls
-  useEffect(() => {
-    // Initial call
-    pingServer();
-
-    // Set up interval
-    const intervalId = setInterval(pingServer, PING_INTERVAL);
-
-    // Cleanup on unmount
-    return () => clearInterval(intervalId);
-  }, []);
-
   return (
     <AppContainer>
       <BackgroundPattern />
@@ -208,7 +194,6 @@ function App() {
           </Section>
         </MainContent>
       </Container>
-      <ApiTracker />
     </AppContainer>
   )
 }
