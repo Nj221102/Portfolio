@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://nj221102.github.io/cv-main",
+  "homepage": "https://nitishjha.space",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
