@@ -37,7 +37,7 @@ const ResumeLinks = () => {
       <Link href="https://github.com/Nj221102" target="_blank" rel="noopener noreferrer">
         <span>🔗</span> GitHub
       </Link>
-      <Link href="/resume.pdf" download="Nitish_Jha_Resume.pdf">
+      <Link href="resume.pdf?v=v2" download="Nitish_Jha_Resume.pdf">
         <span>📝</span> Download Resume
       </Link>
     </LinksContainer>

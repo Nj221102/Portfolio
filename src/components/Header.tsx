@@ -155,6 +155,10 @@ const Header = () => {
       <Title theme={theme}>Software Engineer</Title>
       <ContactInfo>
         <ContactItem theme={theme}>
+          <span>📞</span>
+          <span>+91-7678303875</span>
+        </ContactItem>
+        <ContactItem theme={theme}>
           <span>📧</span>
           <a href="mailto:Nitishj221102@gmail.com">Nitishj221102@gmail.com</a>
         </ContactItem>

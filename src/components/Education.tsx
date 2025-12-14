@@ -62,20 +62,8 @@ const Education = () => {
           <span>Aug 2023 - Present</span>
         </Location>
       </EducationItem>
-
-      <EducationItem theme={theme}>
-        <SchoolName theme={theme}>M.B.S International School</SchoolName>
-        <Degree theme={theme}>
-          <span>Senior Secondary School (STEM)</span>
-          <span className="grade">CGPA: 8.0</span>
-        </Degree>
-        <Location theme={theme}>
-          <span>Greater Noida, UP</span>
-          <span>Mar 2023</span>
-        </Location>
-      </EducationItem>
     </EducationContainer>
   )
 }
 
-export default Education 
+export default Education

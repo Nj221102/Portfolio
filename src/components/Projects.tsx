@@ -80,7 +80,7 @@ const Projects = () => {
     <>
       <ProjectItem theme={theme}>
         <ProjectTitle theme={theme}>
-          <ProjectLink 
+          <ProjectLink
             href="https://github.com/scarpe-team/scarpe/pulls?q=is%3Apr+author%3ANj221102"
             target="_blank"
             rel="noopener noreferrer"
@@ -100,7 +100,7 @@ const Projects = () => {
 
       <ProjectItem theme={theme}>
         <ProjectTitle theme={theme}>
-          <ProjectLink 
+          <ProjectLink
             href="https://github.com/Rdatatable/data.table/pulls?q=is%3Apr+author%3ANj221102"
             target="_blank"
             rel="noopener noreferrer"

@@ -57,13 +57,13 @@ const Achievements = () => {
   return (
     <AchievementList theme={theme}>
       <li>
+        <Highlight theme={theme}>Summer of Bitcoin 2025:</Highlight> Successfully completed a project with Shopstr, developing production-ready API backends in TypeScript and Rust for their merchant-username project, involving Lightning Network (BOLT12) and Bitcoin (BIP353, NIP-05/49) protocols.
+      </li>
+      <li>
         <Highlight theme={theme}>Google Summer of Code 2024 (GSoC):</Highlight> Successfully completed a project with the data.table package in collaboration with the R Project. Contributed extensively to resolving issues, improving documentation, and implementing new features in the open-source package.
       </li>
       <li>
-        <Highlight theme={theme}>President of Training and Placement Club</Highlight> Led and mentored the club to improve placement preparation strategies and engagement, fostering a collaborative environment among students <Duration theme={theme}>(Oct 2023 – Present)</Duration>
-      </li>
-      <li>
-        <Highlight theme={theme}>Programming Achievements:</Highlight> Solved <Highlight theme={theme}>300+</Highlight> CodeWars challenges with an average rank of <Highlight theme={theme}>2000–4000</Highlight> and mastered <Highlight theme={theme}>350+</Highlight> LeetCode problems, demonstrating strong problem-solving capabilities.
+        <Highlight theme={theme}>Open Source Impact:</Highlight> Successfully merged 35+ total Pull Requests across Shopstr, R Project (data.table), and Scarpe repositories.
       </li>
     </AchievementList>
   )

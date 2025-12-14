@@ -116,18 +116,54 @@ const Experience = () => {
       <ExperienceItem theme={theme}>
         <Role theme={theme}>
           <div className="title">
+            Student Developer
+            <span className="company-tag">Summer of Bitcoin 2025 @ Shopstr</span>
+          </div>
+          <Duration theme={theme}>May 2025 – Sep 2025</Duration>
+        </Role>
+        <Description theme={theme}>
+          <li><strong>Rust Lightning Backend:</strong> Built a production-ready Rust/Axum service to manage non-custodial Lightning nodes via Blockstream Greenlight, enabling BOLT 12 offer creation and encrypted seed storage on Bitcoin Mainnet.</li>
+          <li><strong>BIP353 Identity System:</strong> Architected an asynchronous TypeScript API to generate human-readable payment addresses (e.g., user@domain); designed a Redis job queue to handle high-volume DNS TXT record propagation via the Cloudflare API.</li>
+          <li><strong>Nostr Integration:</strong> Implemented NIP-05 and NIP-49 protocols for Shopstr’s main client to verify user identities and public keys against the new merchant username system.</li>
+          <div style={{ marginTop: '10px', display: 'flex', gap: '15px' }}>
+            <StyledLink
+              href="https://github.com/shopstr-eng/shopstr/issues?q=is%3Apr+author%3ANj221102"
+              target="_blank"
+              rel="noopener noreferrer"
+              theme={theme}
+            >
+              NIP Implementation
+            </StyledLink>
+            <StyledLink
+              href="https://github.com/shopstr-eng/merchant-usernames/issues?q=is%3Apr%20author%3ANj221102"
+              target="_blank"
+              rel="noopener noreferrer"
+              theme={theme}
+            >
+              Merchant Username Project
+            </StyledLink>
+          </div>
+        </Description>
+        <Technologies theme={theme}>
+          Technologies: <span className="tech-list">Rust, Axum, TypeScript, Redis, PostgreSQL, Cloudflare Workers, Docker, Lightning Network</span>
+        </Technologies>
+      </ExperienceItem>
+
+      <ExperienceItem theme={theme}>
+        <Role theme={theme}>
+          <div className="title">
             Software Engineer Intern
             <span className="company-tag">Classplus</span>
           </div>
           <Duration theme={theme}>Nov 2024 – Jan 2025</Duration>
         </Role>
         <Description theme={theme}>
-          <li>Developed and maintained microservices using Node.js and Express.js.</li>
-          <li>Implemented caching strategies using Redis to improve API response times.</li>
-          <li>Collaborated with cross-functional teams to deliver high-quality solutions.</li>
+          <li>Developed and migrated APIs, abstracting database queries using ORMs in TypeScript.</li>
+          <li>Built scalable server infrastructure in Go (Golang), supporting SQL (MySQL) and NoSQL (MongoDB) databases.</li>
+          <li>Improved backend workflows, optimized CI/CD pipelines, and ensured code quality through regular reviews and testing.</li>
         </Description>
         <Technologies theme={theme}>
-          Technologies: <span className="tech-list">Node.js, Express.js, Redis, Git</span>
+          Technologies: <span className="tech-list">TypeScript, Golang, Python, MySQL, MongoDB, ORMs, Docker, Git/GitHub</span>
         </Technologies>
       </ExperienceItem>
 
@@ -143,8 +179,8 @@ const Experience = () => {
           <li>Contributed to the data.table package, resolving issues and enhancing functionality</li>
           <li>Improved performance optimizations and documentation for better user experience.</li>
           <li>Collaborated with a global open-source community, working with R, C, GitHub, and Docker.</li>
-          <li>
-            <StyledLink 
+          <div style={{ marginTop: '10px', display: 'flex', gap: '15px' }}>
+            <StyledLink
               href="https://nj221102.github.io/Nitish-gSoc-24/2024-08-24-gsoc'24-summary/"
               target="_blank"
               rel="noopener noreferrer"
@@ -152,7 +188,15 @@ const Experience = () => {
             >
               GSoC'24 work report
             </StyledLink>
-          </li>
+            <StyledLink
+              href="https://github.com/Rdatatable/data.table/issues?q=is%3Apr%20author%3ANj221102"
+              target="_blank"
+              rel="noopener noreferrer"
+              theme={theme}
+            >
+              Contributions
+            </StyledLink>
+          </div>
         </Description>
         <Technologies theme={theme}>
           Technologies: <span className="tech-list">R, C, Docker, GitHub</span>

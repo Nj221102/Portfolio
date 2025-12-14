@@ -205,7 +205,7 @@ function App() {
             <Experience />
           </Section>
           <Section theme={theme}>
-            <Title theme={theme}>Projects</Title>
+            <Title theme={theme}>Open Source Contributions</Title>
             <Projects />
           </Section>
           <Section theme={theme}>

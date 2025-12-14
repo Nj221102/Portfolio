@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { float, glowPulse } from '../styles/animations'
 
+import pic from '../assets/pic.png'
+
 const PhotoContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -27,7 +29,7 @@ const ProfilePhoto = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-image: url('/pic.png');
+  background-image: url(${pic});
   background-size: cover;
   background-position: center;
   border: 2px solid rgba(100, 255, 218, 0.3);

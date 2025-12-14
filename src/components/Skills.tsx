@@ -61,36 +61,51 @@ const Skills = () => {
   const theme = isDarkMode ? darkTheme : lightTheme;
 
   const skillCategories = {
-    'Programming Languages': [
+    'Programming': [
+      { name: 'Rust', level: 85 },
+      { name: 'TypeScript', level: 90 },
+      { name: 'Go (Golang)', level: 80 },
       { name: 'R', level: 90 },
-      { name: 'Java', level: 85 },
-      { name: 'JavaScript', level: 90 },
-      { name: 'Python', level: 85 },
       { name: 'C', level: 80 },
+      { name: 'Python', level: 85 },
+      { name: 'Java', level: 85 },
       { name: 'Ruby', level: 75 },
-      { name: 'Go', level: 80 }
+      { name: 'JavaScript', level: 90 }
     ],
-    'Frameworks & Libraries': [
-      { name: 'Node.js', level: 90 },
-      { name: 'React.js', level: 90 },
+    'Frameworks': [
+      { name: 'Axum', level: 80 },
       { name: 'Next.js', level: 85 },
+      { name: 'React.js', level: 90 },
+      { name: 'Node.js', level: 90 },
       { name: 'Express.js', level: 85 },
-      { name: 'Ruby on Rails', level: 75 },
-      { name: 'Nostr', level: 85 }
+      { name: 'Ruby on Rails', level: 75 }
     ],
-    'Tools & Platforms': [
-      { name: 'Git', level: 90 },
-      { name: 'GitHub/GitLab', level: 90 },
+    'Protocols': [
+      { name: 'Bitcoin', level: 75 },
+      { name: 'Lightning Network', level: 75 },
+      { name: 'Blockstream Greenlight', level: 70 },
+      { name: 'Nostr', level: 85 },
+      { name: 'REST APIs', level: 90 }
+    ],
+    'Tools': [
       { name: 'Docker', level: 85 },
-      { name: 'Postman', level: 85 }
+      { name: 'Git/GitHub', level: 90 },
+      { name: 'Cloudflare Workers', level: 80 },
+      { name: 'Postman', level: 85 },
+      { name: 'Linux', level: 80 }
     ],
-    'Databases & Others': [
-      { name: 'MongoDB', level: 85 },
-      { name: 'MySQL', level: 85 },
+    'Databases': [
       { name: 'PostgreSQL', level: 80 },
+      { name: 'MySQL', level: 85 },
+      { name: 'MongoDB', level: 85 }
+    ],
+    'Soft Skills': [
       { name: 'Time Management', level: 90 },
       { name: 'Problem Solving', level: 90 },
-      { name: 'Leadership', level: 85 }
+      { name: 'Documentation', level: 85 },
+      { name: 'Engaging Presentation', level: 85 },
+      { name: 'Leadership', level: 85 },
+      { name: 'On-site coordination', level: 85 }
     ]
   };
 
@@ -105,8 +120,8 @@ const Skills = () => {
                 <span className="skill-name">{skill.name}</span>
               </div>
               <div className="skill-bar">
-                <div 
-                  className="skill-progress" 
+                <div
+                  className="skill-progress"
                   style={{ width: `${skill.level}%` }}
                 />
               </div>

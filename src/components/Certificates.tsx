@@ -52,7 +52,18 @@ const Certificates = () => {
   return (
     <CertificateList theme={theme}>
       <li>
-        <StyledLink 
+        <StyledLink
+          href="https://docs.google.com/document/d/1JWwgZg78PurZUUAlWKSSPLXvCrf6-q2p37HQw7mUGmU/edit?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          theme={theme}
+        >
+          Summer of Bitcoin 2025 Certificate
+        </StyledLink>
+        <Duration theme={theme}>(Sep 2025)</Duration>
+      </li>
+      <li>
+        <StyledLink
           href="https://docs.google.com/document/d/1QOcN2W-jsp9ekdjn8nybrAkG_svYSdt-Rt_dUhamAPw/edit?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
@@ -63,13 +74,13 @@ const Certificates = () => {
         <Duration theme={theme}>(Aug 2024)</Duration>
       </li>
       <li>
-        <StyledLink 
+        <StyledLink
           href="https://docs.google.com/document/d/1QOcN2W-jsp9ekdjn8nybrAkG_svYSdt-Rt_dUhamAPw/edit?page=2&tab=t.0#bookmark=id.2tnz9zrix96x"
           target="_blank"
           rel="noopener noreferrer"
           theme={theme}
         >
-          Classplus SWE Internship Certificate
+          Classplus Intership Certificate
         </StyledLink>
         <Duration theme={theme}>(Jan 2025)</Duration>
       </li>
